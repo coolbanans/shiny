@@ -132,7 +132,7 @@ runGist <- function(gist, destdir = NULL, ...) {
 #'   # Can run an app from a subdirectory in the repo
 #'   runGitHub("shiny_example", "rstudio", subdir = "inst/shinyapp/")
 #' }
-runGitHub <- function(repo, username = getOption("github.user"),
+runGitHub <- function(repo, host="github.com", username = getOption("github.user"),
                       ref = "master", subdir = NULL, destdir = NULL, ...) {
 
   if (grepl('/', repo)) {
@@ -142,7 +142,7 @@ runGitHub <- function(repo, username = getOption("github.user"),
     repo     <- res[2]
   }
 
-  url <- paste("https://github.com/", username, "/", repo, "/archive/",
+  url <- paste(("https://", host, "/", username, "/", repo, "/archive/",
                ref, ".tar.gz", sep = "")
 
   runUrl(url, subdir = subdir, destdir = destdir, ...)
